@@ -165,8 +165,8 @@ September 4, 2017   %%%%%%%%%%%%% REPLACE SUBMISSION DATE
 %%  of your thesis at a time by using `\includeonly'.                 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\input{chap1}
-%\input{chap2}
+\input{chap1}
+\input{chap2}
 %\input{chap3}
 %\input{chap4}
 
@@ -175,6 +175,8 @@ September 4, 2017   %%%%%%%%%%%%% REPLACE SUBMISSION DATE
 
 %% This adds a line for the Bibliography in the Table of Contents.
 \addcontentsline{toc}{chapter}{Bibliography}
+%% *** comment to remove citation for all references in bibtex file
+\nocite{*}
 %% *** Set the bibliography style. ***
 %% (change according to your preference/requirements)
 \bibliographystyle{amsplain}
