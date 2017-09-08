@@ -1,0 +1,187 @@
+%%%--------------------------------------------------------------------------%%%
+%%%---------------------- PACKAGE LOADING AND DEFAULTS ----------------------%%%
+%%%--------------------------------------------------------------------------%%%
+% Set the typographic rules for English and choose a latin modern font
+\usepackage{lmodern}
+\usepackage{tgpagella}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+% Provide a one inch margin for all pages
+\usepackage[margin=1in, lmargin=1.5in]{geometry}
+\frenchspacing                                          % better looking spacing
+\usepackage{setspace}
+\setlength{\headheight}{15pt}
+
+% Formatting for the running head
+\usepackage{fancyhdr}
+%\usepackage{lastpage}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0.4pt}
+%\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter.\ \ #1}{}}
+%\renewcommand{\footrulewidth}{0.4pt}
+%\fancyfoot[C]{Page \thepage{} of \pageref*{LastPage}}
+\fancyfoot[C]{\thepage{}}
+\fancyhead{}
+\fancyhead[LE,RO]{\nouppercase{\scshape \rightmark}}
+\fancyhead[LO,RE]{\nouppercase{\scshape \leftmark}}
+
+\usepackage{xcolor} % Allow access to multiple colours
+\definecolor{TitleColor}{HTML}{9D0F2C}
+
+\usepackage{graphicx} % enables loading of graphics
+\usepackage{tikz} % drawing vector graphics in latex
+
+% Load the ams-tex packages.
+% mathtools is an extension for amsmath finetuning and bug fixes
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{amstext}
+\usepackage{ctable}
+
+% Formatting for the chapter headings
+\usepackage{titlesec}
+% 'display' puts the label in a separate paragraph. (Like the standard \chapter.)
+% scshape (smallcaps) is applied to the label and the text
+% The label colour is 'TitleColor' and is a lowercase sc title a gap and then a size 64x64 chapter number in the normal font
+% The horizontal separation is 4ex (4 times the height of an 'x' in the current font)
+% Before the title body put a vertical gap of 1ex and then left align the title
+% After the title body put a vertical gap of 2ex and then a ruled line
+\titleformat{\chapter}[display]
+{\Huge\scshape}
+{\filleft{\color{TitleColor}\large\normalfont%
+\textsc{\MakeLowercase{\chaptertitlename}}}\ \ %
+{\color{TitleColor}\fontsize{64}{64}\selectfont\normalfont\thechapter}}
+{4ex}
+{\vspace{1ex}\filright}
+[\vspace{2ex}\titlerule]
+
+% Modify the typesetting of appendix titles
+% toc: Put a header (e.g., ‘Appendices’) into the Table of Contents (the ToC)
+% before listing the appendices.
+% page: Puts a title (e.g., ‘Appendices’) into the document at the point
+% where the appendices environment is begun.
+\usepackage[toc,page]{appendix}
+
+%%%--------------------------------------------------------------------------%%%
+%%%------------------------- MAIN THESIS DEFINITION -------------------------%%%
+%%%--------------------------------------------------------------------------%%%
+
+%% The following five commands set the respective field values so we can
+%% generate the title page and abstract page automatically.
+\makeatletter
+\newcommand*{\degree}[1]%
+  {\ifx\empty#1\empty\else\gdef\@degree{#1}\fi}
+\newcommand*{\department}[1]%
+  {\ifx\empty#1\empty\else\gdef\@department{#1}\fi}
+\newcommand*{\gradyear}[1]%
+  {\ifx\empty#1\empty\else\gdef\@gradyear{#1}\fi}
+\renewcommand*{\author}[1]%
+  {\ifx\empty#1\empty\else\gdef\@author{#1}\fi}
+\renewcommand*{\title}[1]%
+  {\ifx\empty#1\empty\else\gdef\@title{#1}\fi}
+\newcommand*{\faculty}[1]%
+  {\ifx\empty#1\empty\else\gdef\@faculty{#1}\fi}
+\newcommand*{\supervisor}[1]%
+  {\ifx\empty#1\empty\else\gdef\@supervisor{#1}\fi}
+\newcommand*{\university}[1]%
+  {\ifx\empty#1\empty\else\gdef\@university{#1}\fi}
+\makeatother
+
+%% Default values for the required fields.
+\degree{\emph{(degree)}}
+\department{\emph{(department)}}
+\gradyear{\emph{(year of graduation)}}
+\author{\emph{(author)}}
+\title{\emph{(title)}}
+\faculty{\emph{(faculty)}}
+\supervisor{\emph{(supervisor)}}
+\university{\emph{(university)}}
+
+\makeatletter
+\usepackage
+[
+%------------- Color Links ------------------------------
+colorlinks=true,
+urlcolor=red,
+linkcolor=black,                                % COLOUR FOR THE TOC LINES
+linktoc=all,                                    % RE-COLOR THE NUMBERS AS WELL
+%------------- Doc Info ---------------------------------
+    %pdftitle={{\@university} - {\@title}},
+    %pdfauthor={{\@author}},
+    %pdfsubject={{\@title}},
+    %pdfkeywords={keyword1} {key2} {key3},
+%------------ Doc View ----------------------------------
+bookmarksopen=false,
+pdfpagemode=UseNone]{hyperref}
+\makeatother
+
+%%%%%%    New formatting environments and commands.
+
+%% \begin{preliminary} sets the pagestyle and page numbering for the
+%% preliminary sections; \end{preliminary} resets the page numbering.
+%% The default page style is used outside of the preliminary block.
+\newenvironment*{preliminary}%
+  {\pagestyle{plain}\pagenumbering{roman}}%
+  {\cleardoublepage\pagenumbering{arabic}}
+
+%% Change \maketitle to follow SGS guidelines.
+\makeatletter
+\renewcommand*{\maketitle}{
+   \begingroup
+   \renewcommand{\baselinestretch}{1}
+   \begin{titlepage}
+   \begin{large}
+% A pair of horizontal rules about the title of the thesis in small caps at size 48
+   \begin{center}
+      \mbox{}\vfill\rule{\linewidth}{0.1pt} \\%[2ex]
+      \begingroup
+      %\linespread{1.8}\selectfont
+      \fontsize{48}{48}\selectfont
+      \textcolor{TitleColor}{\textsc{\@title}}\\
+      \endgroup
+      \rule{\linewidth}{0.1pt} \\
+%
+      \vfill by \\ \vfill {\@author}\\
+%
+      \vfill \vfill
+      A Thesis Submitted in Partial Fulfillment\\
+      of the Requirements for the Degree of\\
+      {\@degree}\\
+      in the\\
+      Faculty of {\@faculty}\\{\@department}\\
+      \vfill
+      Supervisor: {\@supervisor}\\
+      \vfill
+      {\copyright} {\@author} {\@gradyear}\\
+       {\@university}\\
+     \vspace{.2in}
+      \mbox{}
+   \end{center}
+   \end{large}
+% Force the title page to be page i of the thesis
+   \setcounter{page}{1}
+   \end{titlepage}
+   \endgroup
+   \setcounter{page}{2}
+}
+
+\renewenvironment*{abstract}%
+  {\begin{center}
+      \textsc{\Huge Abstract}
+   \end{center}
+   \begin{center}
+      {\@title}\\[2ex]
+      {\@author}\\
+      Faculty of {\@faculty} ({\@department})\\
+      {\@university}\\
+      {\@gradyear}\\
+   \end{center}}%
+  {\par\newpage}
+\makeatother
+
+\numberwithin{equation}{section}
+\renewcommand{\theequation}{\arabic{chapter}.\arabic{equation}}
