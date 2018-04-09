@@ -96,14 +96,16 @@
 \makeatother
 
 %% Default values for the required fields.
-\degree{\emph{(degree)}}
-\department{\emph{(department)}}
-\gradyear{\emph{(year of graduation)}}
-\author{\emph{(author)}}
-\title{\emph{(title)}}
-\faculty{\emph{(faculty)}}
-\supervisor{\emph{(supervisor)}}
-\university{\emph{(university)}}
+\makeatletter
+\degree{\emph{(degree)}}  \let\Degree\@degree
+\department{\emph{(department)}}  \let\Department\@department
+\gradyear{\emph{(year of graduation)}} \let\Gradyear\@gradyear
+\author{\emph{(author)}} \let\Author\@author
+\title{Thesis Template} \let\Title\@title
+\faculty{\emph{(faculty)}} \let\Faculty\@faculty
+\supervisor{\emph{(supervisor)}} \let\Supervisor\@supervisor
+\university{\emph{(university)}} \let\University\@university
+\makeatother
 
 \makeatletter
 \usepackage
@@ -114,9 +116,9 @@ urlcolor=red,
 linkcolor=black,                                % COLOUR FOR THE TOC LINES
 linktoc=all,                                    % RE-COLOR THE NUMBERS AS WELL
 %------------- Doc Info ---------------------------------
-    %pdftitle={{\@university} - {\@title}},
-    %pdfauthor={{\@author}},
-    %pdfsubject={{\@title}},
+pdftitle={{\@university} - {\@title}},
+pdfauthor={{\@author}},
+pdfsubject={{\@title}},
     %pdfkeywords={keyword1} {key2} {key3},
 %------------ Doc View ----------------------------------
 bookmarksopen=false,
