@@ -1,4 +1,5 @@
-\documentclass[12pt,twoside]{report}
+\documentclass[12pt,twoside, openright]{report} % For double sided reports - book style
+%\documentclass[12pt]{report} % For single sided reports
 
 \input{preamble.tex}
 
@@ -67,12 +68,17 @@
 %%%--------------------------------------------------------------------------%%%
 \maketitle
 
-%% There should be NOTHING between the title page and abstract.
-%% However, if your document is two-sided and you want the abstract
-%% _not_ to appear on the back of the title page, then uncomment the
-%% following line.
-%\cleardoublepage
+%% The University of Ontario Institute of Technology requires the
+%% Certificate of Approvale (CoA) to be included as page (ii) of
+%% the PRINTED version. If this is not required at your institution,
+%% comment out the next 3 lines.
 
+\cleardoublepage
+\addcontentsline{toc}{chapter}{Certificate of Approval}
+\includepdf[pages=-,pagecommand={},width=1.2\textwidth]{CoA.pdf}
+
+
+\cleardoublepage
 %%%--------------------------------------------------------------------------%%%
 % The abstract
 %%%--------------------------------------------------------------------------%%%
@@ -88,38 +94,38 @@
 %% for anything that you want to appear on a right-hand page.
 
 %%%--------------------------------------------------------------------------%%%
-% The declaration
+% The declaration -- UNCOMMENT IF NEEDED
 %%%--------------------------------------------------------------------------%%%
-\chapter*{Author's Declaration}
-\addcontentsline{toc}{chapter}{Author's Declaration}
-% D E C L A R A T I O N   P A G E
-% -------------------------------
-% Creates the page with the author's declaration
-\begin{center}
-\begin{minipage}{4in}
-\parindent=0pt I declare that this work
-was carried out in accordance with the regulations of
-the {\University}. The
-work is original except where indicated by special reference
-in the text and no part of this document has been
-submitted for any other degree.  Any views expressed in
-the dissertation are those of the author and in no way
-represent those of the {\University}.  This document has not been presented to
-any other University for examination either in Canada
-or overseas.
+% \chapter*{Author's Declaration}
+% \addcontentsline{toc}{chapter}{Author's Declaration}
+% % D E C L A R A T I O N   P A G E
+% % -------------------------------
+% % Creates the page with the author's declaration
+% \begin{center}
+% \begin{minipage}{4in}
+% \parindent=0pt I declare that this work
+% was carried out in accordance with the regulations of
+% the {\University}. The
+% work is original except where indicated by special reference
+% in the text and no part of this document has been
+% submitted for any other degree.  Any views expressed in
+% the dissertation are those of the author and in no way
+% represent those of the {\University}.  This document has not been presented to
+% any other University for examination either in Canada
+% or overseas.
 
-\vspace{1in}
+% \vspace{1in}
 
-\hbox to 4in{\hfil\shortstack{\vrule width 3in height
-0.4pt\\
-\sc{\Author}
-}}
-\vspace{1in}
-\parindent=1in Date:
-September 4, 2017   %%%%%%%%%%%%% REPLACE SUBMISSION DATE
-\par
-\end{minipage}%
-\end{center}%
+% \hbox to 4in{\hfil\shortstack{\vrule width 3in height
+% 0.4pt\\
+% \sc{\Author}
+% }}
+% \vspace{1in}
+% \parindent=1in Date:
+% September 4, 2017   %%%%%%%%%%%%% REPLACE SUBMISSION DATE
+% \par
+% \end{minipage}%
+% \end{center}%
 
 ~\vfill
 \cleardoublepage % Ensure deisplay on the right hand side of the page

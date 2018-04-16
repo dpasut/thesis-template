@@ -83,6 +83,8 @@
   {\ifx\empty#1\empty\else\gdef\@department{#1}\fi}
 \newcommand*{\gradyear}[1]%
   {\ifx\empty#1\empty\else\gdef\@gradyear{#1}\fi}
+\newcommand*{\gradmonth}[1]%
+  {\ifx\empty#1\empty\else\gdef\@gradmonth{#1}\fi}
 \renewcommand*{\author}[1]%
   {\ifx\empty#1\empty\else\gdef\@author{#1}\fi}
 \renewcommand*{\title}[1]%
@@ -100,6 +102,7 @@
 \degree{\emph{(degree)}}  \let\Degree\@degree
 \department{\emph{(department)}}  \let\Department\@department
 \gradyear{\emph{(year of graduation)}} \let\Gradyear\@gradyear
+\gradmonth{Month} \let\Gradmonth\@gradmonth
 \author{\emph{(author)}} \let\Author\@author
 \title{Thesis Template} \let\Title\@title
 \faculty{\emph{(faculty)}} \let\Faculty\@faculty
@@ -146,7 +149,7 @@ pdfpagemode=UseNone]{hyperref}
       \mbox{}\vfill\rule{\linewidth}{0.1pt} \\%[2ex]
       \begingroup
       %\linespread{1.8}\selectfont
-      \fontsize{48}{48}\selectfont
+      \fontsize{44}{44}\selectfont
       \textcolor{TitleColor}{\textsc{\@title}}\\
       \endgroup
       \rule{\linewidth}{0.1pt} \\
@@ -159,11 +162,12 @@ pdfpagemode=UseNone]{hyperref}
       {\@degree}\\
       in the\\
       Faculty of {\@faculty}\\{\@department}\\
-      \vfill
-      Supervisor: {\@supervisor}\\
-      \vfill
-      {\copyright} {\@author} {\@gradyear}\\
+      \vfill \vfill
        {\@university}\\
+       \vfill \vfill
+       {\@gradmonth} {\@gradyear}\\
+       \vfill \vfill
+      {\copyright} {\@author} {\@gradyear}\\
      \vspace{.2in}
       \mbox{}
    \end{center}
